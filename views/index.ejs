@@ -1,0 +1,233 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Gifssss</title>
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/vue.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/animate.min.css">
+    <link rel="stylesheet" href="stylesheets/bulma.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="javascripts/font.js"></script>
+    <script src="javascripts/lodash.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav class="navbar is-fixed-top">
+    <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <i class="fas fa-camera-retro fa-5x"></i>&nbsp;
+                    <p style="font-size: 50px"><strong>Gif Gallery</strong></p>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item">
+                        <i class="fas fa-home fa-4x"></i>
+                        <p style="font-size: 30px;"><strong style="color: black">首页</strong></p>
+                    </div>
+                    <div class="navbar-item">
+                        <i class="fas fa-film fa-4x"></i>
+                        <p style="font-size: 30px;"><strong style="color: black">电影</strong></p>
+                    </div>
+                    <div class="navbar-item">
+                        <i class="fab fa-weixin fa-4x"></i>
+                        <p style="font-size: 30px;"><strong style="color: black">表情</strong></p>
+                    </div>
+                    <div class="navbar-item">
+                        <i class="fas fa-female fa-4x"></i>
+                        <p style="font-size: 30px;"><strong style="color: black">美女</strong></p>
+                    </div>
+                    <div class="navbar-item">
+                        <i class="fas fa-envelope fa-2x"></i>
+                        <p style="font-size: 20px;"><strong style="color: black">联系我们</strong></p>
+                    </div>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</nav>
+<div class="container" style="margin-top: 150px" id="container">
+    <div class="multiLoad" v-for="list in lists">
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical is-7">
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <v_article v-bind:item="list[0]"></v_article>
+                    <v_article v-bind:item="list[1]"></v_article>
+                </div>
+                <div class="tile is-parent is-vertical">
+                    <v_article v-bind:item="list[2]"></v_article>
+                    <v_article v-bind:item="list[3]"></v_article>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <v_article v-bind:item="list[4]"></v_article>
+            </div>
+        </div>
+        <div class="tile is-parent is-vertical">
+            <v_article v-bind:item="list[5]"></v_article>
+            <v_article v-bind:item="list[6]"></v_article>
+            <v_article v-bind:item="list[7]"></v_article>
+        </div>
+    </div>
+
+    <div class="tile is-ancestor">
+        <div class="tile is-parent is-vertical">
+            <v_article v-bind:item="list[8]"></v_article>
+            <v_article v-bind:item="list[9]"></v_article>
+            <v_article v-bind:item="list[10]"></v_article>
+            <v_article v-bind:item="list[11]"></v_article>
+        </div>
+        <div class="tile is-vertical is-9">
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <v_article v-bind:item="list[12]"></v_article>
+                    <v_article v-bind:item="list[13]"></v_article>
+                </div>
+                <div class="tile is-parent is-vertical">
+                    <v_article v-bind:item="list[14]"></v_article>
+                    <v_article v-bind:item="list[15]"></v_article>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <v_article v-bind:item="list[16]"></v_article>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content has-text-centered">
+            <a class="button" v-on:click="loadMore" style="width: 960px; margin-top:50px; margin-bottom: 100px"><strong>加载更多...</strong></a>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Gif Gallery</strong><br>
+                内容均来自互联网.版权归原作者所有.如有侵权请立即与我们联系.我们将及时处理<br>
+                @pmwx
+            </p>
+        </div>
+    </div>
+</footer>
+</body>
+<script>
+    $('.tile').addClass('animated pulse');
+    Vue.component('v_article',
+        {
+            props: ['item'],
+            template: "<article class='tile is-child box'>" +
+            "                        <p class='title'>{{item.title}}</p>" +
+            "                        <p class='subtitle'>来源:{{item.origin}}</p>" +
+            "                        <figure class='image is-4by3'>" +
+            "                            <img v-bind:src='item.url'>" +
+            "                        </figure>" +
+            "                        <div class='content'>" +
+            "                            <div class='comments box' style='margin: 0.1rem; padding: 0.1rem, 0.1rem'>" +
+            "                                    <p>评论:</p>" +
+                                            "    <p class='comment' v-for='comment in item.commentList'>" +
+                                            "        <span class='user'>{{comment.user}}</span> 说: <span class='c_content'>{{comment.comment}}</span>" +
+                                            "    </p>" +
+            "                            </div>" +
+            "                            <div class='control' style='margin-top: 0.1rem'>" +
+            "                                <textarea class='textarea' placeholder='评论...' v-model='item.comment'></textarea>" +
+            "                            </div>" +
+            "                            <div class='control' style='margin-top: 0.1rem'>" +
+            "                                <button class='button is-primary is-small' v-on:click='comment(item.id, item.comment)'>提交</button>" +
+            "                            </div>" +
+            "                        </div>" +
+            "                    </article>",
+            methods : {
+                comment : function(gid, comment){
+                    if(comment != null && comment.trim() != ""){
+                        $.post("//localhost:9091/comment", {gid : gid, comment : comment, user : getCookie("user")}, function (data) {
+                            console.log(data);
+                            vm.reload(gid);
+                        });
+                    }
+                }
+            }
+        });
+    var vm = new Vue({
+        el: '#container',
+        data: {
+            pageNum : 0,
+            pageSize : 17,
+            lists : [],
+            idMap : {}
+        },
+        created: function () {
+            setCookie("user", _.uniqueId("游客") , 10);
+            var _self = this;
+            $.get("//localhost:9091/getGifList?pageNum=" + _self.pageNum + "&pageSize=" + _self.pageSize, function (data) {
+                var list = data.data;
+                _self.lists.push(list);
+                list.forEach(function(item){
+                    _self.idMap[item.id] = _self.pageNum;
+                });
+            });
+        },
+        methods : {
+            loadMore : function(){
+                var _self = this;
+                _self.pageNum ++;
+                $.get("//localhost:9091/getGifList?pageNum=" + _self.pageNum + "&pageSize=" + _self.pageSize, function (data) {
+                    var list = data.data;
+                    _self.lists.push(list);
+                    list.forEach(function(item){
+                        _self.idMap[item.id] = _self.pageNum;
+                    });
+                });
+            },
+            reload : function(gid) {
+                var _self = this;
+                var pageNum = _self.idMap[gid];
+                $.get("//localhost:9091/getGifList?pageNum=" + pageNum + "&pageSize=" + _self.pageSize, function (data) {
+                    var list = data.data;
+                    console.log(_self.idMap);
+                    console.log(gid);
+                    console.log(pageNum);
+                    // _self.lists[pageNum] = list;
+                    Vue.set(_self.lists, pageNum, list)
+                });
+            }
+        }
+    });
+
+    function getGifList(){
+
+    }
+
+    function setCookie(c_name,value,expiredays)
+    {
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+            ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
+
+    function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return ""
+    }
+</script>
+</html>

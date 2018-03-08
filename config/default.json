@@ -1,0 +1,25 @@
+{
+  "port" : 8081,
+  "db" : {
+    "host" : "10.18.35.136",
+    "user" : "fdbuser",
+    "password" : "Wslm:11Wps",
+    "database" : "newhouse_shengtai",
+    "port" : 3307
+  },
+  "oldDb" : {
+    "host" : "10.31.84.120",
+    "user" : "newhouse_ro",
+    "password" : "test#ropass",
+    "database" : "newhouse",
+    "port" : 3314
+  },
+  "uc" : {
+    "host" : "10.23.48.161",
+    "user" : "root",
+    "password" : "H1aDQjgi51Fp",
+    "database" : "focus_userhome",
+    "port" : 3514
+  }
+
+}
